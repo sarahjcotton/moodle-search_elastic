@@ -96,6 +96,9 @@ class search_elastic_external extends external_api {
             throw new moodle_exception('cannot_search');
         }
 
+        // Unlock session before searching
+        \core\session\manager::write_close();
+
         // Execute search.
         $search = \core_search\manager::instance();
         $results = $search->search((object)$params, $params['limit']);

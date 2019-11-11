@@ -683,9 +683,9 @@ class engine extends \core_search\engine {
                 $this->totalresultdocs++;
             }
 
-            //  The search backend might have returned up to 10 times the results we need.
-            //  Therefore break out once we have all the results we need.
-            if($this->totalresultdocs >= \core_search\manager::MAX_RESULTS) {
+            // The search backend might have returned up to 10 times the results we need.
+            // Therefore break out once we have all the results we need.
+            if ($this->totalresultdocs >= \core_search\manager::MAX_RESULTS) {
                 break;
             }
 

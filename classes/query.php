@@ -328,6 +328,11 @@ class query  {
         foreach ($configitems as $item => $value) {
             if (substr($item, 0, strlen($query)) === $query && $value > 10) {
                 $area = substr($item, strlen($query));
+                // Replace second '_' in area with '-'. Dashes not allowed in admin setting name.
+                // Use first _ as offset for search.
+                $dashpos = strpos($area, '_', strpos($area, '_') + 1);
+                $area = substr_replace($area, '-', $dashpos, 1);
+
                 $boostedareas[$area] = ($value / 10);
             }
         }

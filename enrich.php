@@ -35,8 +35,9 @@ $PAGE->requires->js_call_amd('search_elastic/enrich', 'init', array($context->id
 
 $config = get_config('search_elastic');
 $form = new \search_elastic\enrich_form(null, null, 'post', '', ['class' => 'ignoredirty']);
-
-if ($data = $form->get_data()) {
+if ($form->is_cancelled()) {
+    redirect(new moodle_url('/admin/category.php', array('category' => 'search_elastic')));
+} else if ($data = $form->get_data()) {
 
     // Save plugin config.
     foreach ($data as $name => $value) {

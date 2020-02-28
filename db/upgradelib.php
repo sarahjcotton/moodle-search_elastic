@@ -15,20 +15,28 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version info.
+ * Upgrade lib for elasticsearch plugin.
  *
  * @package     search_elastic
- * @copyright   2018 Matt Porritt <mattp@catalyst-au.net>
+ * @copyright   2020 Peter Burnett <peterburnett@catalyst-au.net>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2020022800;
-$plugin->release   = 2020022800;      // Same as version.
-$plugin->requires = 2016052304;
-$plugin->component = 'search_elastic';
-$plugin->maturity  = MATURITY_STABLE;
-$plugin->dependencies = array(
-        'local_aws' => 2017030100
-);
+/**
+ * Updates the boosting settings to their new config names
+ *
+ * @return void
+ */
+function update_boosting_setting_names() {
+    $configitems = get_config('search_elastic');
+    foreach ($configitems as $item => $value) {
+        if (strpos($item, 'boost_') === 0) {
+            // Boost item found.
+            $newname = str_replace('-', '_', $item);
+            set_config($newname, $value, 'search_elastic');
+            // Delete the original entry by setting null.
+            set_config($item, null, 'search_elastic');
+        }
+    }
+}

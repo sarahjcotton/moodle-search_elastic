@@ -131,7 +131,11 @@ $string['tikaport_help'] = 'The Port of the Apache Tika endpoint';
 $string['tikasendsize'] = 'Maximum file size';
 $string['tikasendsize_help'] = 'Sending large files to Tika can cause out of memory issues. Therefore we limit it to a size in bytes.';
 $string['usesimplequery'] = 'Use simple query';
-$string['usesimplequery_help'] = 'Simple queries reduce the amount of operators usable, but allow for partial returns on malformed queries.';
+$string['usesimplequery_help'] = 'Simple queries reduce the amount of operators usable, but allow for partial returns on malformed queries.
+
+Standard syntax information: {$a->complex}
+
+Simple syntax information: {$a->simple}';
 $string['wildcardstart'] = 'Wildcard at the start';
 $string['wildcardstart_help'] = 'When enabled Moodle will add implicit wildcards at the start of search terms. This can improve behaviour of searches.
 For example: searching for "scrip" will become "*scrip" prior to be sent to the search engine. This means the search will now match "script" and "description".';

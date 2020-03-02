@@ -40,8 +40,8 @@ class search_elastic_query_testcase extends advanced_testcase {
      */
     public function test_get_boosted_areas() {
         $this->resetAfterTest();
-        set_config('boost_mod_assign-activity', 20, 'search_elastic');
-        set_config('boost_mod_feedback-activity', 10, 'search_elastic');
+        set_config('boost_mod_assign_activity', 20, 'search_elastic');
+        set_config('boost_mod_feedback_activity', 10, 'search_elastic');
 
         $query = new \search_elastic\query();
 

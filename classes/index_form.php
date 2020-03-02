@@ -164,6 +164,16 @@ class index_form extends \moodleform {
             $mform->setDefault('logging', 0);
         }
 
+        $mform->addElement('advcheckbox', 'usesimplequery', get_string ('usesimplequery', 'search_elastic'),
+            'Enable', array(), array(0, 1));
+        $mform->setType('usesimplequery', PARAM_INT);
+        $mform->addHelpButton('usesimplequery', 'usesimplequery', 'search_elastic');
+        if (isset($config->usesimplequery)) {
+            $mform->setDefault('usesimplequery', $config->usesimplequery);
+        } else {
+            $mform->setDefault('usesimplequery', 0);
+        }
+
         $this->add_action_buttons();
     }
 

@@ -735,13 +735,32 @@ class engine extends \core_search\engine {
             $responsecode = $response->getStatusCode();
             $this->log($jsonresults);
 
+            $results = json_decode($jsonresults);
             if ($responsecode != 200) {
                 // Something has gone wrong with getting the results from the backend.
-                // Do some logging and throw an exception.
-                throw new \moodle_exception('queryerror', 'search_elastic', '', null, $jsonresults);
+                // Grab the reason for the first fail, and show a notification to the user.
+                // This typically happens from a bad query.
+
+                // Add contextual help for simple or complex query structure.
+                if (get_config('search_elastic', 'usesimplequery')) {
+                    $url = get_string('simplehelpurl', 'search_elastic');
+                    $helplink = \html_writer::link($url, $url);
+                    $helptext = \html_writer::tag('p', get_string('simplehelptext', 'search_elastic', $helplink));
+                } else {
+                    $url = get_string('complexhelpurl', 'search_elastic');
+                    $helplink = \html_writer::link($url, $url);
+                    $helptext = \html_writer::tag('p', get_string('complexhelptext', 'search_elastic', $helplink));
+                }
+
+                $msg = get_string('queryerror', 'search_elastic', array(
+                    'reason' => $results->error->root_cause[0]->reason,
+                    'help' => $helptext
+                ));
+
+                \core\notification::error($msg);
+                $results = array();
             }
 
-            $results = json_decode($jsonresults);
             $totalhits = 0;
 
             // Iterate through results.

@@ -191,8 +191,9 @@ class query  {
             get_config('search_elastic', 'wildcardend')
         );
 
+        $qtype = get_config('search_elastic', 'usesimplequery') ? 'simple_query_string' : 'query_string';
         $searchfields = $this->get_search_fields();
-        $qobj = array('query_string' => array('query' => $q, 'fields' => $searchfields));
+        $qobj = array($qtype => array('query' => $q, 'fields' => $searchfields));
 
         return $qobj;
     }
@@ -202,7 +203,8 @@ class query  {
      * @return string[][]
      */
     private function construct_q_all() {
-        return array('query_string' => array('query' => '*', 'fields' => $this->get_search_fields()));
+        $qtype = get_config('search_elastic', 'usesimplequery') ? 'simple_query_string' : 'query_string';
+        return array($qtype => array('query' => '*', 'fields' => $this->get_search_fields()));
     }
 
     /**

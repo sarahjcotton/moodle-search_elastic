@@ -34,6 +34,14 @@ $string['boostdescription'] = 'These settings control the boosting settings for 
 $string['boostsettings'] = 'Boosting settings';
 $string['boostvalue'] = '';
 $string['boostvalue_help'] = 'Set the value you want this search area to be boosted by in the search results. Higher boost values give more priority.';
+$string['complexhelptext'] = 'The field to be searched may be specified by prefixing the search query with \'title:\', \'content:\', \'name:\', or \'intro:\'. For example, searching for \'title:news\' would return results with the word \'news\' in the title.
+<br>
+Boolean operators (\'AND\', \'OR\') may be used to combine or exclude keywords.
+<br>
+Wildcard characters (\'*\' or \'?\' ) may be used to represent characters in the search query.
+<br>
+For more information, follow this link: {$a}';
+$string['complexhelpurl'] = 'https://lucene.apache.org/core/2_9_4/queryparsersyntax.html';
 $string['enrichdesc'] = 'Global Search can enrich the indexed data used in search by extracting text and other data from files.
 The data extracted from files in Moodle is controlled by the following groups of settings.';
 $string['enrichsettings'] = 'Data enrichment settings';
@@ -71,7 +79,9 @@ $string['port'] = 'Port';
 $string['port_help'] = 'The Port of the Elasticsearch engine endpoint';
 $string['privacy:metadata'] = 'This plugin sends data externally to a linked Elasticsearch search engine. It does not store data locally.';
 $string['privacy:metadata:data'] = 'Personal data passed through from the search subsystem.';
-$string['queryerror'] = 'Error executing query in Elasticsearch backend.';
+$string['queryerror'] = 'Error executing query in search engine: {$a->reason}
+
+{$a->help}';
 $string['region'] = 'Region';
 $string['region_help'] = 'The AWS region the Elasticsearch instance is in, e.g. ap-southeast-2';
 $string['rekregion'] = 'Region';
@@ -101,6 +111,16 @@ $string['signingsettings'] = 'Request signing settings';
 $string['signingsettings_help'] = 'If your Elasticsearch setup uses Request Signing enable and configure it below.
 
 This generally only applies if you are using Amazon Web Service (AWS) to provide your Elasticsearch Endpoint';
+$string['simplehelptext'] = 'Boolean operators (\'+\' for And, \'|\' for Or) may be used to combine or exclude keywords.
+<br>
+Wildcard characters (\'*\') may be used to represent characters in the search query.
+<br>
+Quotes (" ") may be used to specify a phrase.
+<br>
+Minus (\'-\') may be used to negate search terms.
+<br>
+For more information, follow this link: {$a}';
+$string['simplehelpurl'] = 'https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-simple-query-string-query.html';
 $string['textextractionsettings'] = 'Text extraction';
 $string['textextractionsettingsdesc'] = 'Text extraction takes the actual text contained in a file and adds it as searchable content to the search index.';
 $string['tika'] = 'Apache Tika';
@@ -110,10 +130,11 @@ $string['tikaport'] = 'Tika Port';
 $string['tikaport_help'] = 'The Port of the Apache Tika endpoint';
 $string['tikasendsize'] = 'Maximum file size';
 $string['tikasendsize_help'] = 'Sending large files to Tika can cause out of memory issues. Therefore we limit it to a size in bytes.';
+$string['usesimplequery'] = 'Use simple query';
+$string['usesimplequery_help'] = 'Simple queries reduce the amount of operators usable, but allow for partial returns on malformed queries.';
 $string['wildcardstart'] = 'Wildcard at the start';
 $string['wildcardstart_help'] = 'When enabled Moodle will add implicit wildcards at the start of search terms. This can improve behaviour of searches.
 For example: searching for "scrip" will become "*scrip" prior to be sent to the search engine. This means the search will now match "script" and "description".';
 $string['wildcardend'] = 'Wildcard at the end';
 $string['wildcardend_help'] = 'When enabled Moodle will add implicit wildcards at the end of search terms. This can improve behaviour of searches.
 For example: searching for "math" will become "math*" prior to be sent to the search engine. This means the search will now match "math", "maths" and "mathematics".';
-

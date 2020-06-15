@@ -80,14 +80,22 @@ class rekognition extends base_enrich {
      * @return client $rekclient Rekognition client.
      */
     public function get_rekognition_client() {
-        $rekclient = new \Aws\Rekognition\RekognitionClient([
+        $connoptions = [
             'version' => 'latest',
             'region'  => $this->rekregion,
             'credentials' => [
                 'key'    => $this->rekkey,
                 'secret' => $this->reksecret
             ]
-        ]);
+        ];
+
+        // If Moodle has a proxy in use, we need to use it here too.
+        if (\local_aws\local\aws_helper::get_proxy_string() !== '') {
+            $connoptions['http'] = ['proxy' => \local_aws\local\aws_helper::get_proxy_string()];
+        }
+
+        $rekclient = new \Aws\Rekognition\RekognitionClient($connoptions);
+
         return $rekclient;
     }
 

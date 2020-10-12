@@ -507,7 +507,6 @@ class engine extends \core_search\engine {
         $lastindexeddoc = 0;
         $firstindexeddoc = 0;
         $partial = false;
-        $numbatches = 0;  // TODO: https://github.com/catalyst/moodle-search_elastic/issues/67
 
         // First we'll process all the documents, then if we
         // are processing files we'll itterate through again and just add the files.
@@ -549,7 +548,12 @@ class engine extends \core_search\engine {
         $numdocsignored += $this->batch_add_documents(false, true, true);
         $numdocs = $numrecords - $numdocsignored;
 
-        return array($numrecords, $numdocs, $numdocsignored, $lastindexeddoc, $partial, $numbatches);
+        if (method_exists($this, 'supports_add_document_batch')) {
+            $numbatches = 0;  // TODO: fix https://github.com/catalyst/moodle-search_elastic/issues/67.
+            return array($numrecords, $numdocs, $numdocsignored, $lastindexeddoc, $partial, $numbatches);
+        }
+
+        return array($numrecords, $numdocs, $numdocsignored, $lastindexeddoc, $partial);
     }
 
     /**

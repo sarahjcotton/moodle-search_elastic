@@ -15,9 +15,7 @@ The following features are provided by this plugin:
 ## Supported Moodle Versions
 This plugin currently supports Moodle:
 
-* 3.5
-* 3.6
-* 3.7
+* 3.5+
 
 ## Elasticsearch Version Support
 Currently this plugin is tested to work against the following versions of Elasticsearch:

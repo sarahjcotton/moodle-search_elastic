@@ -548,6 +548,11 @@ class engine extends \core_search\engine {
         $numdocsignored += $this->batch_add_documents(false, true, true);
         $numdocs = $numrecords - $numdocsignored;
 
+        if (method_exists($this, 'supports_add_document_batch')) {
+            $numbatches = 0;  // TODO: fix https://github.com/catalyst/moodle-search_elastic/issues/67.
+            return array($numrecords, $numdocs, $numdocsignored, $lastindexeddoc, $partial, $numbatches);
+        }
+
         return array($numrecords, $numdocs, $numdocsignored, $lastindexeddoc, $partial);
     }
 

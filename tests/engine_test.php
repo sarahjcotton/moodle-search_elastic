@@ -57,7 +57,7 @@ class search_elastic_engine_testcase extends advanced_testcase {
      */
     protected $engine = null;
 
-    public function setUp() {
+    public function setUp(): void {
         $this->resetAfterTest();
         set_config('enableglobalsearch', true);
 
@@ -101,7 +101,7 @@ class search_elastic_engine_testcase extends advanced_testcase {
         $this->search->index(true);
     }
 
-    public function tearDown() {
+    public function tearDown(): void {
         // For unit tests before PHP 7, teardown is called even on skip. So only do our teardown if we did setup.
         if ($this->generator) {
             // Moodle DML freaks out if we don't teardown the temp table after each run.

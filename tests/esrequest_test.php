@@ -47,7 +47,7 @@ class search_elastic_esrequest_testcase extends advanced_testcase {
     /**
      * Test setup.
      */
-    public function setUp() {
+    public function setUp(): void {
         $this->resetAfterTest(true);
         new \search_elastic\engine();
     }

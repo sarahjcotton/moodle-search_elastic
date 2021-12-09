@@ -86,7 +86,7 @@ class tika extends base_enrich {
      *
      * @return string human readable step name.
      */
-    static public function get_enrich_name() {
+    public static function get_enrich_name() {
         return get_string('tika', 'search_elastic');
     }
 
@@ -187,7 +187,7 @@ class tika extends base_enrich {
      * @param mixed $customdata
      * @param mixed $config
      */
-    static public function form_definition_extra($form, $mform, $customdata, $config) {
+    public static function form_definition_extra($form, $mform, $customdata, $config) {
         $mform->addElement('text', 'tikahostname',  get_string ('tikahostname', 'search_elastic'));
         $mform->setType('tikahostname', PARAM_URL);
         $mform->addHelpButton('tikahostname', 'tikahostname', 'search_elastic');

@@ -49,7 +49,7 @@ abstract class base_enrich {
      *
      * @return string human readable step name.
      */
-    static public function get_enrich_name() {
+    public static function get_enrich_name() {
         return '';
     }
 
@@ -117,7 +117,7 @@ abstract class base_enrich {
      * @param mixed $customdata Customdata passed to the form.
      * @param mixed $config Search plugin configuration.
      */
-    static protected function set_default($element, $default, &$mform, $customdata, $config) {
+    protected static function set_default($element, $default, &$mform, $customdata, $config) {
         if (isset($customdata[$element])) {
             $mform->setDefault($element, $customdata[$element]);
         } else if (isset($config->{$element})) {

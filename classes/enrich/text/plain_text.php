@@ -56,7 +56,7 @@ class plain_text extends base_enrich {
      *
      * @return string human readable step name.
      */
-    static public function get_enrich_name() {
+    public static function get_enrich_name() {
         return '';
     }
 
@@ -81,7 +81,7 @@ class plain_text extends base_enrich {
      * @param mixed $customdata
      * @param mixed $config
      */
-    static public function form_definition_extra($form, $mform, $customdata, $config) {
+    public static function form_definition_extra($form, $mform, $customdata, $config) {
         // This is a no-op for this class.
     }
 

@@ -1,0 +1,22 @@
+#
+# Whenever version.php is changed, add the latest version
+# to the Moodle Plugins directory at https://moodle.org/plugins
+#
+name: master - Releasing in the Plugins directory
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'version.php'
+
+jobs:
+  workflow_group_35_to_39_release:
+    uses: catalyst/catalyst-moodle-workflows/.github/workflows/group-35-to-39-release.yml@main
+    with:
+      plugin_name: search_elastic
+      extra_plugin_runners: 'moodle-plugin-ci add-plugin catalyst/moodle-local_aws'
+      disable_grunt: true
+    secrets:
+      moodle_org_token: ${{ secrets.MOODLE_ORG_TOKEN }}

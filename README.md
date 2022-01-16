@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/catalyst/moodle-search_elastic.svg?branch=master)](https://travis-ci.org/catalyst/moodle-search_elastic)
+[![Build Status](https://github.com/catalyst/moodle-search_elastic/workflows/Run%20all%20tests%20for%20Moodle%20310+/badge.svg)](https://github.com/catalyst/moodle-search_elastic/actions)
 
 # Moodle Global Search - Elasticsearch Backend
 

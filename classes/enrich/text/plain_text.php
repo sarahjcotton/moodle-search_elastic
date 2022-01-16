@@ -26,8 +26,6 @@ namespace search_elastic\enrich\text;
 
 use search_elastic\enrich\base\base_enrich;
 
-defined('MOODLE_INTERNAL') || die;
-
 /**
  * Extract text from files using Tika.
  *

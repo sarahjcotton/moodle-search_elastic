@@ -17,8 +17,8 @@ This plugin currently supports Moodle:
 
 | Moodle version      | Branch               |
 | ------------------- | -------------------- |
-| Moodle 3.5 to 3.9   | master               |
 | Moodle 3.10 to 3.11 | MOODLE_310_STABLE    |
+| Moodle 3.5 to 3.9   | master               |
 
 ## Elasticsearch Version Support
 Currently this plugin is tested to work against the following versions of Elasticsearch:
@@ -42,25 +42,29 @@ The following is the bare minimum to get Elasticsearch working in a Debian/Ubunt
 **NOTE:** The instructions below should only be used for test and dev purposes. Don't do this in production. For a production setup we recommend Elasticsearch running as a cluster, getting started documentation can be found here: https://www.elastic.co/guide/en/elasticsearch/reference/current/setup.html
 
 Elasticsearch requires Java as a prerequisite, to install Java:
-<pre><code>
+
+```bash
 sudo apt-get install default-jre default-jdk
-</pre></code>
+```
 
 Once Java is installed, the following commands will install and start Elasticsearch.
-<pre><code>
+
+```bash
 wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.6.1.deb
 sudo dpkg -i elasticsearch-6.6.1.deb
 sudo update-rc.d elasticsearch defaults
 sudo service elasticsearch start
-</pre></code>
+```
 
 A quick test can be performed by running the following from the command line.
-<pre><code>
+
+```
 curl -X GET 'http://localhost:9200'
-</pre></code>
+```
 
 The output should look something like:
-<pre><code>
+
+```json
 {
   "name" : "1QHLiux",
   "cluster_name" : "elasticsearch",
@@ -74,8 +78,7 @@ The output should look something like:
   },
   "tagline" : "You Know, for Search"
 }
-
-</pre></code>
+```
 
 By default the Elasticsearch service is available on: `http://localhost:9200`
 

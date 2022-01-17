@@ -31,8 +31,6 @@
 
 namespace search_elastic;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Custom Guzzle exception class.
  *

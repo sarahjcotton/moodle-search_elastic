@@ -24,8 +24,6 @@
 
 namespace search_elastic\enrich\base;
 
-defined('MOODLE_INTERNAL') || die;
-
 /**
  * Base data enrichment class.
  *

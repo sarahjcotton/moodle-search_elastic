@@ -31,8 +31,6 @@
 
 namespace search_elastic;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Elasticsearch engine.
  *
@@ -40,7 +38,7 @@ defined('MOODLE_INTERNAL') || die();
  * @copyright   Matt Porritt <mattp@catalyst-au.net>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class query  {
+class query {
 
     /**
      * @var number of records to return to Global Search.

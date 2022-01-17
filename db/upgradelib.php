@@ -21,7 +21,6 @@
  * @copyright   2020 Peter Burnett <peterburnett@catalyst-au.net>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-defined('MOODLE_INTERNAL') || die();
 
 /**
  * Updates the boosting settings to their new config names

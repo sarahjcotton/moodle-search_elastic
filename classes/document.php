@@ -293,6 +293,11 @@ class document extends \core_search\document {
         return $data;
     }
 
+    /**
+     * Set doc data to override for discrete files inside of block content
+     *
+     * @param array $docdata Doc data to be set set.
+     */
     public function set_data_from_engine($docdata) {
         $fields = static::$requiredfields + static::$optionalfields + static::$enginefields;
         foreach ($fields as $fieldname => $field) {

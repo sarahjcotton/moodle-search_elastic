@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/catalyst/moodle-search_elastic/workflows/Run%20all%20tests%20for%20moodle%2035%20to%2039/badge.svg)](https://github.com/catalyst/moodle-search_elastic/actions)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/catalyst/moodle-search_elastic/ci/master?label=ci)
 
 # Moodle Global Search - Elasticsearch Backend
 

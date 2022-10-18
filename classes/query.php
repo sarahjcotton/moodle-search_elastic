@@ -81,6 +81,8 @@ class query {
 
     /**
      * construct basic query structure
+     *
+     * @param int $docoffest Offset for the docs.
      */
     public function __construct($docoffest=0) {
 

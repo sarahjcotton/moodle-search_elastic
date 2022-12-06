@@ -45,11 +45,29 @@ use \GuzzleHttp\Psr7\Request;
 class search_elastic_esrequest_testcase extends advanced_testcase {
 
     /**
+     * @var stdClass $cfg Backup of global config.
+     */
+    protected stdClass $cfg;
+
+    /**
      * Test setup.
      */
     public function setUp(): void {
+        global $CFG;
+        $this->cfg = clone $CFG;
         $this->resetAfterTest(true);
         new \search_elastic\engine();
+    }
+
+    /**
+     * Reset global $CFG object.
+     *
+     * @return void
+     */
+    public function tearDown(): void {
+        global $CFG;
+        $CFG = clone $this->cfg;
+        unset($this->cfg);
     }
 
     /**
@@ -350,10 +368,10 @@ class search_elastic_esrequest_testcase extends advanced_testcase {
      * from Moodle Proxy settings.
      */
     public function test_proxy_construct() {
-        $this->resetAfterTest(true);
-        set_config('proxyhost', 'localhost');
-        set_config('proxyport', 3128);
-        set_config('proxybypass', 'localhost, 127.0.0.1');
+        global $CFG;
+        $CFG->proxyhost = 'localhost';
+        $CFG->proxyport = 3128;
+        $CFG->proxybypass = 'localhost, 127.0.0.1';
 
         // We're testing a private method, so we need to setup reflector magic.
         $method = new ReflectionMethod('\search_elastic\esrequest', 'proxyconstruct');
@@ -373,12 +391,12 @@ class search_elastic_esrequest_testcase extends advanced_testcase {
      * With proxy authentication.
      */
     public function test_proxy_construct_auth() {
-        $this->resetAfterTest(true);
-        set_config('proxyhost', 'localhost');
-        set_config('proxyport', 3128);
-        set_config('proxybypass', 'localhost, 127.0.0.1');
-        set_config('proxyuser', 'user1');
-        set_config('proxypassword', 'password');
+        global $CFG;
+        $CFG->proxyhost = 'localhost';
+        $CFG->proxyport = 3128;
+        $CFG->proxybypass = 'localhost, 127.0.0.1';
+        $CFG->proxyuser = 'user1';
+        $CFG->proxypassword = 'password';
 
         // We're testing a private method, so we need to setup reflector magic.
         $method = new ReflectionMethod('\search_elastic\esrequest', 'proxyconstruct');
@@ -398,12 +416,12 @@ class search_elastic_esrequest_testcase extends advanced_testcase {
      * With proxy authentication and no proxy bypass.
      */
     public function test_proxy_construct_no_bypass() {
-        $this->resetAfterTest(true);
-        set_config('proxyhost', 'localhost');
-        set_config('proxyport', 3128);
-        set_config('proxybypass', '');
-        set_config('proxyuser', 'user1');
-        set_config('proxypassword', 'password');
+        global $CFG;
+        $CFG->proxyhost = 'localhost';
+        $CFG->proxyport = 3128;
+        $CFG->proxybypass = '';
+        $CFG->proxyuser = 'user1';
+        $CFG->proxypassword = 'password';
 
         // We're testing a private method, so we need to setup reflector magic.
         $method = new ReflectionMethod('\search_elastic\esrequest', 'proxyconstruct');
@@ -422,11 +440,11 @@ class search_elastic_esrequest_testcase extends advanced_testcase {
      * Using socks as the protocol.
      */
     public function test_proxy_construct_socks() {
-        $this->resetAfterTest(true);
-        set_config('proxyhost', 'localhost');
-        set_config('proxyport', 3128);
-        set_config('proxybypass', 'localhost, 127.0.0.1');
-        set_config('proxytype', 'SOCKS5');
+        global $CFG;
+        $CFG->proxyhost = 'localhost';
+        $CFG->proxyport = 3128;
+        $CFG->proxybypass = 'localhost, 127.0.0.1';
+        $CFG->proxytype = 'SOCKS5';
 
         // We're testing a private method, so we need to setup reflector magic.
         $method = new ReflectionMethod('\search_elastic\esrequest', 'proxyconstruct');
@@ -444,10 +462,10 @@ class search_elastic_esrequest_testcase extends advanced_testcase {
      * Test esrequest get with proxy functionality
      */
     public function test_proxy_get() {
-        $this->resetAfterTest(true);
-        set_config('proxyhost', 'localhost');
-        set_config('proxyport', 3128);
-        set_config('proxybypass', 'localhost, 127.0.0.1');
+        global $CFG;
+        $CFG->proxyhost = 'localhost';
+        $CFG->proxyport = 3128;
+        $CFG->proxybypass = 'localhost, 127.0.0.1';
 
         $container = [];
         $history = Middleware::history($container);
